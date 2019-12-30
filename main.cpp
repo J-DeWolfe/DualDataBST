@@ -1,5 +1,5 @@
 /*	main.cpp used for testing bst.h and bst.cpp
-	Jeff DeWolfe Oct 23, 2019
+	J DeWolfe Oct 23, 2019
 	This BST holds two separate data objects	*/
 
 #include <string>
@@ -19,7 +19,7 @@ int main()
 {
 	testStringIntTree();
 	testDoubleTimeTree();
-	system("PAUSE"); //Console hack
+	system("PAUSE");
 }
 
 //TEST #1
@@ -30,7 +30,8 @@ void testStringIntTree()
 	string words[12] = { "Bravo", "India", "Charlie", "Golf", "Hotel", "Delta", "Echo", "Alpha", "Foxtrot", "Juliett", "Lima", "Lima" };
 	for (int i = 0; i < 12; i++)
 	{
-		stringIntTree.insert(words[i], i); //Insert() should reject second "Lima" entry
+		stringIntTree.insert(words[i], i); //Insert() should reject second "Lima" entry 
+		//Secondary data = pre-insertion index
 	}
 	stringIntTree.remove("Bravo");
 	display(stringIntTree, (string)"Charlie", (string)"Bravo", (string)"Quebec");
@@ -46,6 +47,7 @@ void testDoubleTimeTree()
 	{
 		time_t now = time(NULL);
 		doubleTimeTree.insert(numbers[i], now); //Insert() should reject second "0.0" entry
+		//Secondary data = insertion time in milliseconds
 	}
 	doubleTimeTree.remove(22.2);
 	display(doubleTimeTree, (double)44.4, (double)22.2, (double)500);
@@ -73,8 +75,6 @@ void display(BST<T1, T2> &bst, T1 val, T1 rem, T1 nev)
 	cout << endl << "Secondary data for " << val;
 	if (valData) cout << " is " << valData;
 	else cout << " wasn't found." << endl;
-	//Secondary data for stringIntTree is pre-insertion index
-	//Secondary data doubleTimeTree is insertion time in milliseconds
 
 	T2 remData = bst.getSecondaryData(rem);
 	cout << endl << "Secondary data for " << rem;
